@@ -34,7 +34,11 @@ export function useEntries(giveawayId?: string) {
   }, [giveawayId, supabase]);
 
   // Add a new entry (participant joins giveaway)
-  const addEntry = async (participantName: string): Promise<Entry | null> => {
+  const addEntry = async (
+    participantName: string,
+    redditName?: string,
+    redditProfileLink?: string
+  ): Promise<Entry | null> => {
     if (!giveawayId) {
       setError("No giveaway ID provided");
       return null;
@@ -48,6 +52,8 @@ export function useEntries(giveawayId?: string) {
       .insert({
         giveaway_id: giveawayId,
         participant_name: participantName,
+        reddit_name: redditName || null,
+        reddit_profile_link: redditProfileLink || null,
       })
       .select()
       .single();

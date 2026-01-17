@@ -84,6 +84,7 @@ export default function QuantitySelector({
       <div className="flex items-center gap-2">
         {/* Decrement Button */}
         <button
+          type="button"
           onClick={handleDecrement}
           disabled={quantity <= min}
           className="flex h-8 w-8 items-center justify-center rounded border border-zinc-300 bg-zinc-50 transition-colors hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-700"
@@ -113,6 +114,7 @@ export default function QuantitySelector({
 
         {/* Increment Button */}
         <button
+          type="button"
           onClick={handleIncrement}
           disabled={quantity >= max}
           className="flex h-8 w-8 items-center justify-center rounded border border-zinc-300 bg-zinc-50 transition-colors hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-700"
