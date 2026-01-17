@@ -243,6 +243,88 @@ export default function GiveawayPage() {
           </div>
         </div>
 
+        {/* Giveaway Info */}
+        <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
+          <h3 className="mb-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+            Giveaway Details
+          </h3>
+
+          {/* Currencies Being Given Away */}
+          <div className="mb-4">
+            <h4 className="mb-2 text-xs font-medium text-zinc-500 dark:text-zinc-500 uppercase">
+              Currencies
+            </h4>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { key: "divine_orb", name: "Divine Orb", jsonKey: "divineOrb" },
+                { key: "exalted_orb", name: "Exalted Orb", jsonKey: "exaltedOrb" },
+                { key: "chaos_orb", name: "Chaos Orb", jsonKey: "chaosOrb" },
+                { key: "mirror_of_kalandra", name: "Mirror of Kalandra", jsonKey: "mirrorOfKalandra" },
+                { key: "orb_of_alchemy", name: "Orb of Alchemy", jsonKey: "orbOfAlchemy" },
+                { key: "orb_of_augmentation", name: "Orb of Augmentation", jsonKey: "orbOfAugmentation" },
+                { key: "orb_of_chance", name: "Orb of Chance", jsonKey: "orbOfChance" },
+                { key: "orb_of_transmutation", name: "Orb of Transmutation", jsonKey: "orbOfTransmutation" },
+                { key: "regal_orb", name: "Regal Orb", jsonKey: "regalOrb" },
+                { key: "vaal_orb", name: "Vaal Orb", jsonKey: "vaalOrb" },
+                { key: "annulment_orb", name: "Annulment Orb", jsonKey: "annulmentOrb" },
+              ]
+                .filter((currency) => {
+                  const value = giveaway[currency.key as keyof typeof giveaway];
+                  return typeof value === "number" && value > 0;
+                })
+                .map((currency) => {
+                  const currencyInfo = currencyData.currency.find(
+                    (c) => c.name === currency.jsonKey
+                  );
+                  const quantity = giveaway[currency.key as keyof typeof giveaway] as number;
+
+                  return (
+                    <div
+                      key={currency.key}
+                      className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white p-2 dark:border-zinc-700 dark:bg-zinc-800"
+                    >
+                      {currencyInfo?.picture && (
+                        <div className="relative h-8 w-8 flex-shrink-0">
+                          <Image
+                            src={currencyInfo.picture}
+                            alt={currency.name}
+                            fill
+                            className="object-contain"
+                            sizes="32px"
+                          />
+                        </div>
+                      )}
+                      <div className="flex flex-col">
+                        <span className="text-xs font-medium text-zinc-900 dark:text-zinc-100">
+                          {currency.name}
+                        </span>
+                        <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                          Qty: {quantity}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 border-t border-zinc-200 pt-4 text-sm text-zinc-600 dark:border-zinc-700 dark:text-zinc-400">
+            <p>
+              <span className="font-medium">Created:</span>{" "}
+              {new Date(giveaway.created_at).toLocaleString()}
+            </p>
+            <p>
+              <span className="font-medium">Status:</span> {giveaway.status}
+            </p>
+            <p className="flex flex-col gap-1">
+              <span className="font-medium">Share URL:</span>
+              <code className="rounded bg-zinc-200 px-2 py-1 text-xs dark:bg-zinc-800">
+                {typeof window !== "undefined" ? window.location.href : `/giveaway/${slug}`}
+              </code>
+            </p>
+          </div>
+        </div>
+
         {/* Join Form - Only show if active and user is not verified owner */}
         {isActive && !hasPassword && (
           <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
@@ -406,31 +488,6 @@ export default function GiveawayPage() {
             )}
           </div>
         )}
-
-        {/* Giveaway Info */}
-        <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
-          <h3 className="mb-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-            Giveaway Details
-          </h3>
-          <div className="flex flex-col gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-            <p>
-              <span className="font-medium">Currency:</span> {giveaway.currency}
-            </p>
-            <p>
-              <span className="font-medium">Created:</span>{" "}
-              {new Date(giveaway.created_at).toLocaleString()}
-            </p>
-            <p>
-              <span className="font-medium">Status:</span> {giveaway.status}
-            </p>
-            <p>
-              <span className="font-medium">Share URL:</span>{" "}
-              <code className="rounded bg-zinc-200 px-2 py-1 dark:bg-zinc-800">
-                {typeof window !== "undefined" ? window.location.href : `/giveaway/${slug}`}
-              </code>
-            </p>
-          </div>
-        </div>
       </main>
 
       {/* Password Entry Modal */}

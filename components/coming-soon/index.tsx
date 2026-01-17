@@ -19,7 +19,7 @@ export default function ComingSoon() {
           Coming Soon
         </h2>
         <p className="text-zinc-600 dark:text-zinc-400">
-          Features we're working on to make POE Giveaway even better
+          Some future features. Not sure when cause i work full time but they&apos;re on the roadmap!
         </p>
       </div>
 

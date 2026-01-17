@@ -74,9 +74,7 @@ Is it perfect? Absolutely not. Does it work? Most of the time. Will there be bug
                   {comingSoonData.comingSoon.length} features
                 </span>
               </div>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-                We're constantly working on new features to improve your giveaway experience
-              </p>
+             
 
               {/* Preview of first 3 features */}
               <div className="flex flex-col gap-2 mb-4">

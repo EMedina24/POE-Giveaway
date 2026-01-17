@@ -8,6 +8,12 @@
         },
         {
             "id": 2,
+            "title": "Proper twitch support",
+            "description": "add some sort of twitch integration to pick viewers or followers as winners.",
+            "expectedReleaseDate": "tbd"
+        },
+        {
+            "id": 7,
             "title": "POE 1 support",
             "description": "add support for POE 1 items and currencies.",
             "expectedReleaseDate": "tbd"
