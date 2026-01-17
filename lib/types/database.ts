@@ -20,6 +20,7 @@ export type Database = {
           regal_orb: number;
           vaal_orb: number;
           annulment_orb: number;
+          allow_strict: boolean;
           status: "active" | "closed" | "drawn";
           winner_id: string | null;
           created_at: string;
@@ -43,6 +44,7 @@ export type Database = {
           regal_orb?: number;
           vaal_orb?: number;
           annulment_orb?: number;
+          allow_strict?: boolean;
           status?: "active" | "closed" | "drawn";
           winner_id?: string | null;
           created_at?: string;
@@ -66,6 +68,7 @@ export type Database = {
           regal_orb?: number;
           vaal_orb?: number;
           annulment_orb?: number;
+          allow_strict?: boolean;
           status?: "active" | "closed" | "drawn";
           winner_id?: string | null;
           created_at?: string;

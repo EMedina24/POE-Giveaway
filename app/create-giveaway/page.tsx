@@ -14,6 +14,7 @@ export default function CreateGiveaway() {
   const [poeName, setPoeName] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [requireReddit, setRequireReddit] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [generatedPassword, setGeneratedPassword] = useState("");
   const [createdGiveawaySlug, setCreatedGiveawaySlug] = useState("");
@@ -51,6 +52,7 @@ export default function CreateGiveaway() {
       title: title,
       description: description || null,
       creator_password: password,
+      allow_strict: requireReddit,
       status: "active" as const,
     };
 
@@ -157,6 +159,38 @@ export default function CreateGiveaway() {
               rows={3}
               className="rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-600"
             />
+          </div>
+
+          {/* Require Reddit Toggle */}
+          <div className="flex flex-col gap-3 rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <label
+                  htmlFor="require-reddit"
+                  className="text-sm font-medium text-zinc-900 dark:text-zinc-100 cursor-pointer"
+                >
+                  Require Reddit Username & Profile Link
+                </label>
+                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
+                  When enabled, participants must provide their Reddit username and link to their Reddit profile to join this giveaway. This helps verify participant identity and reduce duplicate entries.
+                </p>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={requireReddit}
+                onClick={() => setRequireReddit(!requireReddit)}
+                className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 ${
+                  requireReddit ? "bg-zinc-900 dark:bg-zinc-100" : "bg-zinc-300 dark:bg-zinc-700"
+                }`}
+              >
+                <span
+                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                    requireReddit ? "translate-x-5" : "translate-x-0"
+                  }`}
+                />
+              </button>
+            </div>
           </div>
 
           {/* Currency Quantities */}

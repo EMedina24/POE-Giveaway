@@ -2,15 +2,19 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import ActiveGiveawayCard from "@/components/active-giveaway-card";
 import type { Giveaway } from "@/lib/types/database";
 import comingSoonData from "@/data/coming-soon.json";
 
 export default function Home() {
+  const router = useRouter();
   const [giveaways, setGiveaways] = useState<Giveaway[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showPepo, setShowPepo] = useState(false);
 
   useEffect(() => {
     const fetchGiveaways = async () => {
@@ -35,8 +39,16 @@ export default function Home() {
     fetchGiveaways();
   }, []);
 
+  const handleCreateGiveawayClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowPepo(true);
+    setTimeout(() => {
+      router.push("/create-giveaway");
+    }, 3000); // 3s animation
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="relative flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black overflow-hidden">
       <main className="flex min-h-screen w-full max-w-4xl flex-col gap-8 py-16 px-8 bg-white dark:bg-black">
         <div className="flex flex-col gap-6">
           <div className="flex items-start justify-between gap-4">
@@ -52,6 +64,7 @@ Is it perfect? Absolutely not. Does it work? Most of the time. Will there be bug
             </div>
             <Link
               href="/create-giveaway"
+              onClick={handleCreateGiveawayClick}
               className="flex-shrink-0 rounded-lg bg-zinc-900 px-6 py-3 font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
             >
               Create Giveaway
@@ -138,6 +151,48 @@ Is it perfect? Absolutely not. Does it work? Most of the time. Will there be bug
           )}
         </div>
       </main>
+
+      {/* Animated Pepo */}
+      {showPepo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+          <div className="animate-pepo-grow">
+            <Image
+              src="/data/img/pepo.png"
+              alt="Pepo"
+              width={120}
+              height={120}
+              className="object-contain"
+            />
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes pepo-grow {
+          0% {
+            transform: scale(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          50% {
+            transform: scale(2);
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: scale(2.5);
+            opacity: 0;
+          }
+        }
+
+        .animate-pepo-grow {
+          animation: pepo-grow 3s ease-in-out forwards;
+        }
+      `}</style>
     </div>
   );
 }

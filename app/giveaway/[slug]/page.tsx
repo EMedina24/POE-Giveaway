@@ -25,6 +25,7 @@ export default function GiveawayPage() {
   const [redditProfileLink, setRedditProfileLink] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [showPepo, setShowPepo] = useState(false);
 
   // Password management
   const [hasPassword, setHasPassword] = useState(false);
@@ -56,6 +57,18 @@ export default function GiveawayPage() {
       return;
     }
 
+    // Check if Reddit fields are required and validate
+    if (giveaway && giveaway.allow_strict) {
+      if (!redditName.trim()) {
+        setSubmitError("Reddit username is required for this giveaway");
+        return;
+      }
+      if (!redditProfileLink.trim()) {
+        setSubmitError("Reddit profile link is required for this giveaway");
+        return;
+      }
+    }
+
     // Validate Reddit profile link if provided
     if (redditProfileLink.trim()) {
       const redditUrlPattern = /^https?:\/\/(www\.)?(reddit\.com|old\.reddit\.com)\/(u|user)\/[\w-]+\/?$/i;
@@ -74,7 +87,11 @@ export default function GiveawayPage() {
     );
 
     if (entry) {
-      alert(`Successfully joined the giveaway!`);
+      setShowPepo(true);
+      setTimeout(() => {
+        alert(`Successfully joined the giveaway!`);
+        setShowPepo(false);
+      }, 3000);
       setParticipantName("");
       setRedditName("");
       setRedditProfileLink("");
@@ -355,7 +372,7 @@ export default function GiveawayPage() {
                   htmlFor="reddit-name"
                   className="text-sm font-medium text-zinc-900 dark:text-zinc-100"
                 >
-                  Reddit Username (Optional)
+                  Reddit Username {giveaway.allow_strict ? <span className="text-red-500">*</span> : "(Optional)"}
                 </label>
                 <input
                   id="reddit-name"
@@ -363,6 +380,7 @@ export default function GiveawayPage() {
                   value={redditName}
                   onChange={(e) => setRedditName(e.target.value)}
                   placeholder="u/YourRedditName"
+                  required={giveaway.allow_strict}
                   className="rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-600"
                 />
               </div>
@@ -372,7 +390,7 @@ export default function GiveawayPage() {
                   htmlFor="reddit-profile"
                   className="text-sm font-medium text-zinc-900 dark:text-zinc-100"
                 >
-                  Reddit Profile Link (Optional)
+                  Reddit Profile Link {giveaway.allow_strict ? <span className="text-red-500">*</span> : "(Optional)"}
                 </label>
                 <input
                   id="reddit-profile"
@@ -380,6 +398,7 @@ export default function GiveawayPage() {
                   value={redditProfileLink}
                   onChange={(e) => setRedditProfileLink(e.target.value)}
                   placeholder="https://reddit.com/u/YourRedditName"
+                  required={giveaway.allow_strict}
                   className="rounded-lg border border-zinc-300 bg-white px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-600"
                 />
               </div>
@@ -499,6 +518,81 @@ export default function GiveawayPage() {
           error={passwordError}
         />
       )}
+
+      {/* Animated Pepe */}
+      {showPepo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+          <div className="flex flex-col items-center gap-4">
+            <div className="animate-dialog-appear bg-white dark:bg-zinc-800 border-2 border-zinc-900 dark:border-zinc-100 rounded-lg px-4 py-2 relative">
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-zinc-800 border-b-2 border-r-2 border-zinc-900 dark:border-zinc-100 rotate-45"></div>
+              <p className="text-lg font-bold text-zinc-900 dark:text-zinc-100 whitespace-nowrap">
+                GIB DIV REEEEEE
+              </p>
+            </div>
+            <div className="animate-pepo-grow">
+              <Image
+                src="/data/img/pepe.png"
+                alt="Pepe"
+                width={120}
+                height={120}
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes pepo-grow {
+          0% {
+            transform: scale(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          50% {
+            transform: scale(2);
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: scale(2.5);
+            opacity: 0;
+          }
+        }
+
+        @keyframes dialog-appear {
+          0% {
+            transform: scale(0) translateY(10px);
+            opacity: 0;
+          }
+          15% {
+            transform: scale(1.1) translateY(0);
+            opacity: 1;
+          }
+          25% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+          }
+          85% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+
+        .animate-pepo-grow {
+          animation: pepo-grow 3s ease-in-out forwards;
+        }
+
+        .animate-dialog-appear {
+          animation: dialog-appear 3s ease-in-out forwards;
+        }
+      `}</style>
     </div>
   );
 }
