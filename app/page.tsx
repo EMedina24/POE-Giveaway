@@ -49,25 +49,25 @@ export default function Home() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black overflow-hidden">
-      <main className="flex min-h-screen w-full max-w-4xl flex-col gap-8 py-16 px-8 bg-white dark:bg-black">
+      <main className="flex min-h-screen w-full max-w-4xl flex-col gap-8 py-8 px-4 sm:py-16 sm:px-8 bg-white dark:bg-black">
         <div className="flex flex-col gap-6">
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
             <div className="flex-1">
-              <h1 className="text-3xl font-bold font-cinzel text-zinc-900 dark:text-zinc-100">
+              <h1 className="text-2xl sm:text-3xl font-bold font-cinzel text-zinc-900 dark:text-zinc-100">
                 Path of Sharing
               </h1>
-              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
                 Path of Sharing is a small, community-driven app for Path of
                 Exile players. Create giveaways and share the loot. Built as a
                 fun hobby project. Enjoy!
               </p>
             </div>
-            <div className="flex flex-shrink-0 gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <a
                 href="https://github.com/Path-of-sharing/POE-Giveaway"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-3 font-semibold text-zinc-900 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
+                className="flex items-center justify-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-3 font-semibold text-zinc-900 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
               >
                 <svg
                   className="h-5 w-5"
@@ -80,12 +80,12 @@ export default function Home() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="hidden sm:inline">View on GitHub</span>
+                <span>View on GitHub</span>
               </a>
               <Link
                 href="/create-giveaway"
                 onClick={handleCreateGiveawayClick}
-                className="rounded-lg bg-zinc-900 px-6 py-3 font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+                className="rounded-lg bg-zinc-900 px-6 py-3 font-semibold text-center text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
               >
                 Create Giveaway
               </Link>
