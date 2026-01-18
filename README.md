@@ -2,7 +2,6 @@
 
 A modern, full-featured giveaway platform built for the Path of Exile community. Create, manage, and run fair giveaways for POE currency and items with built-in anti-cheat measures.
 
-![POE Giveaway Banner](public/data/img/pepe.png)
 
 ## Features
 
