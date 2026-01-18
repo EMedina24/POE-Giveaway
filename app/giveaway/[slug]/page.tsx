@@ -17,7 +17,7 @@ export default function GiveawayPage() {
   const router = useRouter();
   const slug = params.slug as string;
 
-  const { giveaway, loading: giveawayLoading, error: giveawayError, selectWinner } = useGiveaway(slug);
+  const { giveaway, loading: giveawayLoading, error: giveawayError, selectWinner, updateStatus } = useGiveaway(slug);
   const { entries, loading: entriesLoading, addEntry, entryCount, subscribeToEntries } = useEntries(
     giveaway?.id
   );
@@ -149,6 +149,24 @@ export default function GiveawayPage() {
     }
   };
 
+  const handleEndGiveaway = async () => {
+    if (!giveaway) return;
+
+    const confirmed = window.confirm(
+      "Are you sure you want to end this giveaway? This will close it and prevent new entries."
+    );
+
+    if (!confirmed) return;
+
+    const success = await updateStatus("closed");
+
+    if (success) {
+      alert("Giveaway has been closed successfully.");
+    } else {
+      alert("Failed to close giveaway. Please try again.");
+    }
+  };
+
   if (giveawayLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black">
@@ -237,10 +255,20 @@ export default function GiveawayPage() {
             )}
 
             {hasPassword && (
-              <div className="flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-3 py-2 dark:border-green-800 dark:bg-green-900/20">
-                <span className="text-sm font-medium text-green-800 dark:text-green-400">
-                  ✓ Verified Owner
-                </span>
+              <div className="flex items-center gap-3">
+                {isActive && (
+                  <button
+                    onClick={handleEndGiveaway}
+                    className="rounded-lg border border-red-300 bg-white px-4 py-2 font-semibold text-red-600 transition-colors hover:bg-red-50 dark:border-red-800 dark:bg-zinc-900 dark:text-red-400 dark:hover:bg-red-900/20"
+                  >
+                    End Giveaway
+                  </button>
+                )}
+                <div className="flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-3 py-2 dark:border-green-800 dark:bg-green-900/20">
+                  <span className="text-sm font-medium text-green-800 dark:text-green-400">
+                    ✓ Verified Owner
+                  </span>
+                </div>
               </div>
             )}
           </div>
