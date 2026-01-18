@@ -1,24 +1,24 @@
-# POE Giveaway 🎁
+# POE Giveaway
 
 A modern, full-featured giveaway platform built for the Path of Exile community. Create, manage, and run fair giveaways for POE currency and items with built-in anti-cheat measures.
 
 ![POE Giveaway Banner](public/data/img/pepe.png)
 
-## ✨ Features
+## Features
 
-- **🎯 Multiple Currency Support** - Support for all major POE currencies (Divine Orbs, Exalted Orbs, Chaos Orbs, Mirror of Kalandra, and more)
-- **🔐 Secure Entry Management** - IP-based duplicate prevention and optional Reddit verification
-- **🎲 Fair Winner Selection** - Random winner selection with visual spinner
-- **📊 Real-time Updates** - Live participant count and entry updates using Supabase Realtime
-- **🔒 Creator Authentication** - Password-protected giveaway management
-- **📱 Responsive Design** - Works seamlessly on desktop and mobile devices
-- **🌙 Dark Mode** - Beautiful dark theme with custom POE-inspired styling
-- **🎨 Custom UI** - Path of Exile themed design with custom fonts and currency images
-- **🔗 Shareable Links** - Unique URLs for each giveaway
-- **⏰ Scheduled Giveaways** - Optional end dates for automatic closure
-- **✅ Entry Confirmation** - Modal confirmation before submitting entries
+- **Multiple Currency Support** - Support for all major POE currencies (Divine Orbs, Exalted Orbs, Chaos Orbs, Mirror of Kalandra, and more)
+- **Secure Entry Management** - IP-based duplicate prevention and optional Reddit verification
+- **Fair Winner Selection** - Random winner selection with visual spinner
+- **Real-time Updates** - Live participant count and entry updates using Supabase Realtime
+- **Creator Authentication** - Password-protected giveaway management
+- **Responsive Design** - Works seamlessly on desktop and mobile devices
+- **Dark Mode** - Beautiful dark theme with custom POE-inspired styling
+- **Custom UI** - Path of Exile themed design with custom fonts and currency images
+- **Shareable Links** - Unique URLs for each giveaway
+- **Scheduled Giveaways** - Optional end dates for automatic closure
+- **Entry Confirmation** - Modal confirmation before submitting entries
 
-## 🚀 Tech Stack
+## Tech Stack
 
 - **Framework:** [Next.js 16](https://nextjs.org/) with App Router
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
@@ -28,18 +28,18 @@ A modern, full-featured giveaway platform built for the Path of Exile community.
 - **Real-time:** Supabase Realtime subscriptions
 - **Deployment:** [Vercel](https://vercel.com/) (recommended)
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) 20.x or later
 - [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/), [pnpm](https://pnpm.io/), or [bun](https://bun.sh/)
 - A [Supabase](https://supabase.com/) account (free tier works)
 
-## 🛠️ Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/poe-giveaway.git
+   git clone https://github.com/EMedina24/poe-giveaway.git
    cd poe-giveaway
    ```
 
@@ -96,7 +96,7 @@ Before you begin, ensure you have the following installed:
 
    Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
 
-## 📚 Usage
+## Usage
 
 ### Creating a Giveaway
 
@@ -127,7 +127,7 @@ Before you begin, ensure you have the following installed:
 3. Click "Select Winner" to randomly choose a winner
 4. The winner will be displayed with a crown icon
 
-## 🔒 Security Features
+## Security Features
 
 - **IP-based Duplicate Prevention** - Each IP can only enter a giveaway once
 - **Username Uniqueness** - Participant names must be unique per giveaway
@@ -136,7 +136,7 @@ Before you begin, ensure you have the following installed:
 - **Row Level Security** - Database-level access controls
 - **Input Validation** - Server-side and client-side validation
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 poe-giveaway/
@@ -170,7 +170,7 @@ poe-giveaway/
 └── ...config files
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Deploy to Vercel (Recommended)
 
@@ -189,7 +189,7 @@ This is a standard Next.js application and can be deployed to any platform that 
 - [AWS Amplify](https://aws.amazon.com/amplify/)
 - Self-hosted with PM2 or Docker
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a pull request.
 
@@ -202,7 +202,7 @@ Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTIN
 5. Push to the branch (`git push origin feature/amazing-feature`)
 6. Open a Pull Request
 
-## 🐛 Bug Reports
+## Bug Reports
 
 If you find a bug, please open an issue with:
 - A clear title and description
@@ -211,31 +211,31 @@ If you find a bug, please open an issue with:
 - Screenshots if applicable
 - Your environment (OS, browser, Node version)
 
-## 💡 Feature Requests
+## Feature Requests
 
 Have an idea? Open an issue with the `enhancement` label and describe:
 - The problem you're trying to solve
 - Your proposed solution
 - Any alternatives you've considered
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Path of Exile community for inspiration
 - [Supabase](https://supabase.com/) for the backend infrastructure
 - [Vercel](https://vercel.com/) for hosting and Next.js
 - All contributors who help improve this project
 
-## 📞 Support
+## Support
 
-- 📧 Open an issue for bug reports or feature requests
-- 💬 Join discussions in the Issues tab
-- ⭐ Star this repo if you find it useful!
+- Open an issue for bug reports or feature requests
+- Join discussions in the Issues tab
+- Star this repo if you find it useful!
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Twitch SSO integration for stream giveaways
 - [ ] Email notifications for winners

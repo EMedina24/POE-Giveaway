@@ -242,12 +242,12 @@ To contribute tests:
 
 ## 🐛 Known Issues
 
-Check the [Issues](https://github.com/yourusername/poe-giveaway/issues) page for known bugs and feature requests.
+Check the [Issues](https://github.com/EMedina24/poe-giveaway/issues) page for known bugs and feature requests.
 
 ## ❓ Questions?
 
-- Open a [Discussion](https://github.com/yourusername/poe-giveaway/discussions) for general questions
-- Check existing [Issues](https://github.com/yourusername/poe-giveaway/issues) first
+- Open a [Discussion](https://github.com/EMedina24/poe-giveaway/discussions) for general questions
+- Check existing [Issues](https://github.com/EMedina24/poe-giveaway/issues) first
 - Reach out to maintainers if needed
 
 ## 🙏 Recognition

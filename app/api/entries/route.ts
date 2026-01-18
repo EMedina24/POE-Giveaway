@@ -6,7 +6,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { giveaway_id, participant_name, reddit_name, reddit_profile_link } = body;
 
-    // Validate required fields
     if (!giveaway_id || !participant_name) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -14,16 +13,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get IP address from request headers
     const ip =
       request.headers.get("x-forwarded-for")?.split(",")[0] ||
       request.headers.get("x-real-ip") ||
       "unknown";
 
-    // Create Supabase client
     const supabase = await createClient();
 
-    // Check if IP address has already entered this giveaway
     if (ip !== "unknown") {
       const { data: existingEntries, error: checkError } = await supabase
         .from("entries")
@@ -40,7 +36,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Insert entry with IP address
     const { data, error } = await supabase
       .from("entries")
       .insert({
@@ -54,7 +49,6 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (error) {
-      // Handle duplicate entry error (participant_name unique constraint)
       if (error.code === "23505") {
         return NextResponse.json(
           { error: "You have already entered this giveaway" },

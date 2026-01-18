@@ -28,16 +28,11 @@ export default function GiveawayPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [showPepo, setShowPepo] = useState(false);
-
-  // Confirmation modal
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-
-  // Password management
   const [hasPassword, setHasPassword] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordError, setPasswordError] = useState("");
 
-  // Check for password cookie when giveaway loads
   useEffect(() => {
     if (giveaway?.slug) {
       const password = getGiveawayPassword(giveaway.slug);
@@ -45,7 +40,6 @@ export default function GiveawayPage() {
     }
   }, [giveaway?.slug]);
 
-  // Subscribe to real-time updates
   useEffect(() => {
     if (giveaway?.id) {
       const unsubscribe = subscribeToEntries();
@@ -62,7 +56,6 @@ export default function GiveawayPage() {
       return;
     }
 
-    // Check if Reddit fields are required and validate
     if (giveaway && giveaway.allow_strict) {
       if (!redditName.trim()) {
         setSubmitError("Reddit username is required for this giveaway");
@@ -74,7 +67,6 @@ export default function GiveawayPage() {
       }
     }
 
-    // Validate Reddit profile link if provided
     if (redditProfileLink.trim()) {
       const redditUrlPattern = /^https?:\/\/(www\.)?(reddit\.com|old\.reddit\.com)\/(u|user)\/[\w-]+\/?$/i;
       if (!redditUrlPattern.test(redditProfileLink.trim())) {
@@ -83,7 +75,6 @@ export default function GiveawayPage() {
       }
     }
 
-    // Show confirmation modal instead of submitting immediately
     setShowConfirmationModal(true);
   };
 
@@ -120,9 +111,7 @@ export default function GiveawayPage() {
   const handleVerifyPassword = (enteredPassword: string) => {
     if (!giveaway) return;
 
-    // Verify password matches the one in the database
     if (enteredPassword === giveaway.creator_password) {
-      // Save to cookie
       setGiveawayPassword(giveaway.slug, enteredPassword);
       setHasPassword(true);
       setShowPasswordModal(false);
@@ -160,7 +149,6 @@ export default function GiveawayPage() {
     }
   };
 
-  // Find the currency image
   const currencyImage = giveaway
     ? currencyData.currency.find((c) => c.name === giveaway.currency)?.picture
     : null;
