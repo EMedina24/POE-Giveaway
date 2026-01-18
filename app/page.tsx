@@ -53,13 +53,14 @@ export default function Home() {
         <div className="flex flex-col gap-6">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+              <h1 className="text-3xl font-bold font-cinzel text-zinc-900 dark:text-zinc-100">
                 Path of Sharing
               </h1>
               <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-               Path of Sharing is a small, community-driven app for Path of Exile 2 players. Create giveaways, join paths created by others, and share the excitement of loot — built as a fun hobby project by a single dev.
-
-Is it perfect? Absolutely not. Does it work? Most of the time. Will there be bugs? hell yeah.
+                Path of Sharing is a small, community-driven app for Path of
+                Exile players. Create giveaways and share the loot. Built as a
+                fun hobby project. Is it perfect? Absolutely not. Will there be
+                bugs? hell yeah.
               </p>
             </div>
             <Link
@@ -72,7 +73,6 @@ Is it perfect? Absolutely not. Does it work? Most of the time. Will there be bug
           </div>
 
           {/* Memeish Intro Section */}
-          
         </div>
 
         {/* Coming Soon Preview Section */}
@@ -80,21 +80,30 @@ Is it perfect? Absolutely not. Does it work? Most of the time. Will there be bug
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                <h2 className="text-xl font-semibold font-cinzel text-zinc-900 dark:text-zinc-100">
                   What's Coming Next
                 </h2>
                 <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900/50 dark:text-blue-400">
                   {comingSoonData.comingSoon.length} features
                 </span>
               </div>
-             
 
               {/* Preview of first 3 features */}
               <div className="flex flex-col gap-2 mb-4">
                 {comingSoonData.comingSoon.slice(0, 3).map((feature) => (
                   <div key={feature.id} className="flex items-start gap-2">
-                    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                     <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
                       {feature.title}
@@ -108,8 +117,18 @@ Is it perfect? Absolutely not. Does it work? Most of the time. Will there be bug
                 className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               >
                 View all upcoming features
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Link>
             </div>

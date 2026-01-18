@@ -9,6 +9,7 @@ import currencyData from "@/data/currency.json";
 import { getGiveawayPassword, setGiveawayPassword } from "@/lib/utils/cookies";
 import PasswordEntryModal from "@/components/password-entry-modal";
 import GiveawaySelector from "@/components/giveaway-selector";
+import Button from "@/components/button";
 
 export default function GiveawayPage() {
   const params = useParams();
@@ -241,13 +242,11 @@ export default function GiveawayPage() {
 
             {/* Manage Giveaway Button */}
             {!hasPassword && (
-              <button
-                type="button"
+              <Button
+                text="Manage Giveaway"
                 onClick={handleOpenPasswordModal}
-                className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
-              >
-                Manage Giveaway
-              </button>
+                buttonStyle="gold"
+              />
             )}
 
             {hasPassword && (
@@ -409,13 +408,12 @@ export default function GiveawayPage() {
                 </div>
               )}
 
-              <button
+              <Button
+                text={isSubmitting ? "Joining..." : "Join Giveaway"}
                 type="submit"
                 disabled={isSubmitting}
-                className="rounded-lg bg-zinc-900 px-6 py-3 font-semibold text-white transition-colors hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
-              >
-                {isSubmitting ? "Joining..." : "Join Giveaway"}
-              </button>
+                buttonStyle="red"
+              />
             </form>
           </div>
         )}

@@ -47,31 +47,37 @@ export function useEntries(giveawayId?: string) {
     setLoading(true);
     setError(null);
 
-    const { data, error: insertError } = await supabase
-      .from("entries")
-      .insert({
-        giveaway_id: giveawayId,
-        participant_name: participantName,
-        reddit_name: redditName || null,
-        reddit_profile_link: redditProfileLink || null,
-      })
-      .select()
-      .single();
+    try {
+      // Call API route to create entry with IP address
+      const response = await fetch("/api/entries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          giveaway_id: giveawayId,
+          participant_name: participantName,
+          reddit_name: redditName,
+          reddit_profile_link: redditProfileLink,
+        }),
+      });
 
-    if (insertError) {
-      // Handle duplicate entry error
-      if (insertError.code === "23505") {
-        setError("You have already entered this giveaway");
-      } else {
-        setError(insertError.message);
+      const result = await response.json();
+
+      if (!response.ok) {
+        setError(result.error || "Failed to join giveaway");
+        setLoading(false);
+        return null;
       }
+
+      setEntries((prev) => [result.data, ...prev]);
+      setLoading(false);
+      return result.data;
+    } catch (err) {
+      setError("Failed to join giveaway");
       setLoading(false);
       return null;
     }
-
-    setEntries((prev) => [data, ...prev]);
-    setLoading(false);
-    return data;
   };
 
   // Remove an entry

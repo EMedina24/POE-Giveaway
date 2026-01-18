@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import currencyData from "@/data/currency.json";
 import { useGiveaway } from "@/lib/hooks/useGiveaway";
 import QuantitySelector from "@/components/quantity selector";
@@ -90,6 +91,27 @@ export default function CreateGiveaway() {
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-4xl flex-col gap-8 py-16 px-8 bg-white dark:bg-black">
         <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Back to Home
+            </Link>
+          </div>
           <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
             Create a Giveaway
           </h1>
@@ -190,6 +212,36 @@ export default function CreateGiveaway() {
                   }`}
                 />
               </button>
+            </div>
+          </div>
+
+          {/* Twitch SSO Toggle - Coming Soon */}
+          <div className="relative flex flex-col gap-3 rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900 opacity-60">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  Enable Twitch SSO for Stream Giveaways
+                </label>
+                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
+                  Allow viewers to join your giveaway by signing in with their Twitch account. Perfect for stream giveaways with automatic verification.
+                </p>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={false}
+                disabled
+                className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-not-allowed rounded-full border-2 border-transparent bg-zinc-300 dark:bg-zinc-700 transition-colors duration-200 ease-in-out"
+              >
+                <span className="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-0" />
+              </button>
+            </div>
+
+            {/* Coming Soon Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-zinc-900/10 dark:bg-black/20 backdrop-blur-[0.5px]">
+              <span className="rounded-full bg-blue-100 px-4 py-1.5 text-sm font-semibold text-blue-800 shadow-lg dark:bg-blue-900/80 dark:text-blue-200 border border-blue-200 dark:border-blue-700">
+                Coming Soon
+              </span>
             </div>
           </div>
 

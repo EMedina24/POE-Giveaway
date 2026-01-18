@@ -82,6 +82,7 @@ export type Database = {
           participant_name: string;
           reddit_name: string | null;
           reddit_profile_link: string | null;
+          ip_address: string | null;
           created_at: string;
         };
         Insert: {
@@ -90,6 +91,7 @@ export type Database = {
           participant_name: string;
           reddit_name?: string | null;
           reddit_profile_link?: string | null;
+          ip_address?: string | null;
           created_at?: string;
         };
         Update: {
@@ -98,6 +100,7 @@ export type Database = {
           participant_name?: string;
           reddit_name?: string | null;
           reddit_profile_link?: string | null;
+          ip_address?: string | null;
           created_at?: string;
         };
       };
